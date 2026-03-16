@@ -1,7 +1,7 @@
 # Home Assistant Add-on: Snappier Server
 
-**Version:** `1.1.0`  
-**Runtime:** Snappier Server CLI **beta** `v1.5.0z`
+**Version:** `1.1.1`  
+**Runtime:** Snappier Server CLI **beta** `v1.5.0a2`
 
 > **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
 > This add-on is currently under active development. Not all features have been fully tested.  
@@ -15,7 +15,7 @@ Self-hosted, lightweight recording and streaming service for Home Assistant.
 
 ## About
 
-Snappier Server is a media recording and streaming application that allows you to record live TV streams, schedule recordings, and download movies and TV series. This Home Assistant add-on packages Snappier Server CLI `v1.5.0z` from the official beta binary source.
+Snappier Server is a media recording and streaming application that allows you to record live TV streams, schedule recordings, and download movies and TV series. This Home Assistant add-on packages Snappier Server CLI `v1.5.0a2` from the official beta binary source.
 
 **Known Limitations:**
 - Some features may not work as expected
@@ -142,7 +142,7 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server**: CLI binaries v1.5.0x from `https://snappierserver.app/betaFiles/`
+- **Snappier Server**: CLI binaries `v1.5.0a2` from `https://snappierserver.app/betaFiles/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 

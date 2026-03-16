@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-bashio::log.info "Starting Snappier Server v1.5.0..."
+bashio::log.info "Starting Snappier Server v1.5.0a2..."
 
 # Get configuration from Home Assistant
 export SNAPPIER_DOWNLOAD_SPEED_LIMIT=$(bashio::config 'download_speed_limit_mbs')

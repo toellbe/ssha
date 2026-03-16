@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.1.0] - 2026-03-16
+## [1.1.1] - 2026-03-16
 
 ### Initial Release
 - Initial public release of the Home Assistant add-on package
-- Uses Snappier Server CLI beta binaries `v1.5.0z` from `snappierserver.app`
+- Uses Snappier Server CLI beta binaries `v1.5.0a2` from `snappierserver.app`
 - Multi-architecture support: `amd64`, `aarch64`
 - Configurable storage paths for recordings, movies, series, and PVR
 - EPG support with configurable URL and refresh interval
