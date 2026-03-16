@@ -1,0 +1,59 @@
+name: Snappier Server Unofficial
+version: "1.1.0"
+slug: snappier-server
+description: Self-hosted, lightweight recording and streaming service
+arch:
+  - amd64
+  - aarch64
+startup: services
+init: false
+ports:
+  8000/tcp: 7429
+ports_description:
+  8000/tcp: Snappier Server Web Interface
+webui: http://[HOST]:[PORT:8000]
+ingress: false
+panel_icon: mdi:television
+panel_title: Snappier Server
+hassio_api: true
+hassio_role: manager
+homeassistant_api: false
+host_network: false
+privileged: []
+full_access: false
+apparmor: true
+map:
+  - addon_config:rw
+  - share:rw
+  - media:rw
+  - ssl:ro
+options:
+  use_curl_to_download: true
+  download_speed_limit_mbs: 0
+  enable_remux: true
+  enable_epg: false
+  epg_url: ""
+  epg_refresh_interval: 24
+  recordings_folder: "/share/snappier/recordings"
+  movies_folder: "/share/snappier/movies"
+  series_folder: "/share/snappier/series"
+  pvr_folder: "/share/snappier/pvr"
+  api_token: ""
+  timezone: "Europe/Berlin"
+  ssl_cert: "/ssl/fullchain.pem"
+  ssl_key: "/ssl/privkey.pem"
+schema:
+  use_curl_to_download: bool
+  download_speed_limit_mbs: int(0,)
+  enable_remux: bool
+  enable_epg: bool
+  epg_url: str?
+  epg_refresh_interval: int(1,168)
+  recordings_folder: str
+  movies_folder: str
+  series_folder: str
+  pvr_folder: str
+  api_token: str?
+  timezone: str
+  ssl_cert: str?
+  ssl_key: str?
