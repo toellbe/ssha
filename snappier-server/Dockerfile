@@ -48,12 +48,12 @@ RUN case "${BUILD_ARCH}" in \
         ;; \
     esac \
     && echo "Downloading Snappier Server CLI for ${SNAPPIER_ARCH}..." \
-    && curl -L -o snappier-server-cli.zip "https://snappierserver.app/betaFiles/snappier-server-cli-v1.5.0a2-linux-${SNAPPIER_ARCH}.zip" \
+    && curl -L -o snappier-server-cli.zip "https://snappierserver.app/betaFiles/snappier-server-cli-v1.5.0ab-linux-${SNAPPIER_ARCH}.zip" \
     && unzip snappier-server-cli.zip \
-    && ls -la snappier-server-cli-v1.5.0a2-linux-${SNAPPIER_ARCH} \
-    && file snappier-server-cli-v1.5.0a2-linux-${SNAPPIER_ARCH} \
-    && chmod +x snappier-server-cli-v1.5.0a2-linux-${SNAPPIER_ARCH} \
-    && mv snappier-server-cli-v1.5.0a2-linux-${SNAPPIER_ARCH} /usr/local/bin/snappier-server \
+    && ls -la snappier-server-cli-v1.5.0ab-linux-${SNAPPIER_ARCH} \
+    && file snappier-server-cli-v1.5.0ab-linux-${SNAPPIER_ARCH} \
+    && chmod +x snappier-server-cli-v1.5.0ab-linux-${SNAPPIER_ARCH} \
+    && mv snappier-server-cli-v1.5.0ab-linux-${SNAPPIER_ARCH} /usr/local/bin/snappier-server \
     && rm snappier-server-cli.zip \
     && ls -la /usr/local/bin/snappier-server \
     && file /usr/local/bin/snappier-server
