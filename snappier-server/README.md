@@ -15,14 +15,15 @@ Self-hosted, lightweight recording and streaming service for Home Assistant.
 
 ## About
 
-Snappier Server is a media recording and streaming application that allows you to record live TV streams, schedule recordings, and download movies and TV series. This Home Assistant add-on packages Snappier Server CLI `v1.5.0ab` from the official beta binary source.
+This repository provides Snappier Server as a Home Assistant add-on, allowing it to run continuously in the background without any complex setup.
 
-**Known Limitations:**
-- Some features may not work as expected
-- Documentation may be incomplete
-- Configuration options may require fine-tuning
+**The Snappier IPTV App is required** to interact with the server and manage recordings, downloads, and schedules.
+
+With the **Snappier IPTV App**, users can effortlessly schedule live TV recordings, save CatchupTV, and download movies or entire TV series from their IPTV provider. Snappier Server takes care of these requests in the background. Once a recording or download begins, Snappier IPTV itself can be closed — the server continues independently.
 
 ## Features
+
+This add-on supports the full feature set of Snappier Server, including:
 
 - 🎬 **Live TV Recording**: Record live streams and schedule future recordings
 - 📺 **TV Series Management**: Automatic episode downloading and organization
@@ -154,11 +155,7 @@ These directories are accessible from other Home Assistant add-ons.
 
 ## Support
 
-**⚠️ Important Notice:**
-This is an experimental add-on. While we strive to help with issues, please understand that:
-- Not all features have been thoroughly tested
-- Some configurations may not work as expected
-- Breaking changes may occur during development
+If you encounter a bug, have a feature request, or need help, feel free to [open an issue](https://github.com/toellbe/ssha/issues) on GitHub. Feedback and contributions are always welcome!
 
 ## Version History
 
@@ -170,7 +167,8 @@ This project is licensed under the MIT License. See [LICENSE](./snappier-server/
 
 ## Credits
 
-- [Snappier Server](https://www.snappierserver.app/) by the Snappier Server Team
+- [Snappier Server](https://www.snappierserver.app/) by Sarah Bainbridge
+- [Snappier IPTV](https://snappieriptv.app/) by Sarah Bainbridge
 - Home Assistant add-on adaptation and integration
 - Community feedback and contributions
 
