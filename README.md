@@ -5,15 +5,10 @@ This repository contains two add-ons:
 - **Snappier Server** (stable) - Runtime `v1.3.4`
 - **Snappier Server Beta** (beta) - Runtime `v1.5.0ab`
 
-> **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
-> This add-on is currently under active development. Not all features have been fully tested.  
-> Use at your own risk and expect potential issues or incomplete functionality.  
-> Feedback and bug reports are welcome!
-
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 
-Self-hosted, lightweight recording and streaming service for Home Assistant.
+Self-hosted, lightweight Snappierer Server for Home Assistant.
 
 ## About
 

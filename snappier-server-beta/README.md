@@ -11,7 +11,7 @@
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 
-Self-hosted, lightweight recording and streaming service for Home Assistant.
+Self-hosted, lightweight Snappierer Server for Home Assistant.
 
 ## About
 
