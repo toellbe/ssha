@@ -1,7 +1,7 @@
-name: Snappier Server Unofficial
-version: "1.2.0"
-slug: snappier-server
-description: Self-hosted, lightweight recording and streaming service (stable)
+name: Snappier Server Beta Unofficial
+version: "1.2.0-beta.1"
+slug: snappier-server-beta
+description: Self-hosted, lightweight recording and streaming service (beta)
 arch:
   - amd64
   - aarch64
@@ -14,7 +14,7 @@ ports_description:
 webui: http://[HOST]:[PORT:8000]
 ingress: false
 panel_icon: mdi:television
-panel_title: Snappier Server
+panel_title: Snappier Server Beta
 hassio_api: true
 hassio_role: manager
 homeassistant_api: false

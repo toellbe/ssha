@@ -1,7 +1,12 @@
-# Home Assistant Add-on: Snappier Server
+# Home Assistant Add-on: Snappier Server Beta
 
-**Version:** `1.2.0`  
-**Runtime:** Snappier Server CLI (stable) `v1.3.4`
+**Version:** `1.2.0-beta.1`  
+**Runtime:** Snappier Server CLI **beta** `v1.5.0ab`
+
+> **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
+> This add-on is currently under active development. Not all features have been fully tested.  
+> Use at your own risk and expect potential issues or incomplete functionality.  
+> Feedback and bug reports are welcome!
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
@@ -35,7 +40,7 @@ This add-on supports the full feature set of Snappier Server, including:
    - Go to **Supervisor** > **Add-on Store** > **⋮** > **Repositories**
    - Add the repository URL: `https://github.com/toellbe/ssha`
 
-2. Find the "Snappier Server" add-on (stable) and click **Install**
+2. Find the "Snappier Server Beta" add-on and click **Install**
 
 3. Configure the add-on (see Configuration section below)
 
@@ -138,12 +143,12 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server**: CLI binaries `v1.3.4` from `https://snappierserver.app/files/`
+- **Snappier Server**: CLI binaries `v1.5.0ab` from `https://snappierserver.app/betaFiles/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 
 ### Build Information
-- Uses Snappier Server stable CLI binaries (not Docker wrapper)
+- Uses Snappier Server beta CLI binaries (not Docker wrapper)
 - Simplified single-service architecture
 - Fixed port mapping for stability
 - Persistent storage integration

@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.2.0] - 2026-03-22
+## [1.2.0-beta.1] - 2026-03-22
 
 ### Changed
 - Split repository into two channels: stable and beta add-ons
-- Switched this add-on to stable Snappier Server CLI binaries `v1.3.4`
+- This add-on is now the dedicated beta channel
+- Continued to use Snappier Server CLI beta binaries `v1.5.0ab`
 
 ## [1.1.2] - 2026-03-22
 

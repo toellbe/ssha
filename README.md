@@ -1,7 +1,9 @@
-# Home Assistant Add-on: Snappier Server
+# Home Assistant Add-ons: Snappier Server
 
-**Version:** `1.1.2`  
-**Runtime:** Snappier Server CLI **beta** `v1.5.0ab`
+This repository contains two add-ons:
+
+- **Snappier Server** (stable) - Runtime `v1.3.4`
+- **Snappier Server Beta** (beta) - Runtime `v1.5.0ab`
 
 > **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
 > This add-on is currently under active development. Not all features have been fully tested.  
@@ -40,7 +42,9 @@ This add-on supports the full feature set of Snappier Server, including:
    - Go to **Supervisor** > **Add-on Store** > **⋮** > **Repositories**
    - Add the repository URL: `https://github.com/toellbe/ssha`
 
-2. Find the "Snappier Server" add-on and click **Install**
+2. Choose one add-on and click **Install**:
+    - "Snappier Server" (stable)
+    - "Snappier Server Beta" (beta)
 
 3. Configure the add-on (see Configuration section below)
 
@@ -143,12 +147,13 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server**: CLI binaries `v1.5.0ab` from `https://snappierserver.app/betaFiles/`
+- **Snappier Server (stable)**: CLI binaries `v1.3.4` from `https://snappierserver.app/files/`
+- **Snappier Server Beta**: CLI binaries `v1.5.0ab` from `https://snappierserver.app/betaFiles/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 
 ### Build Information
-- Uses Snappier Server beta CLI binaries (not Docker wrapper)
+- Stable and beta channels use separate CLI binary feeds (not Docker wrapper)
 - Simplified single-service architecture
 - Fixed port mapping for stability
 - Persistent storage integration
@@ -160,6 +165,7 @@ If you encounter a bug, have a feature request, or need help, feel free to [open
 ## Version History
 
 See [snappier-server/CHANGELOG.md](./snappier-server/CHANGELOG.md) for all version changes.
+See [snappier-server-beta/CHANGELOG.md](./snappier-server-beta/CHANGELOG.md) for beta channel changes.
 
 ## License
 
@@ -180,11 +186,20 @@ This project is licensed under the MIT License. See [LICENSE](./snappier-server/
 ssha/
 ├── README.md                          # This file
 ├── repository.json                    # Repository configuration
-└── snappier-server/                   # Snappier Server Add-on
+├── snappier-server/                   # Stable channel add-on
+│   ├── config.yaml                    # Add-on configuration
+│   ├── Dockerfile                     # Container build instructions
+│   ├── README.md                      # Stable add-on documentation
+│   ├── CHANGELOG.md                   # Stable version history
+│   ├── LICENSE                        # MIT License
+│   └── rootfs/                        # Container filesystem
+│       ├── etc/
+│       └── opt/
+└── snappier-server-beta/              # Beta channel add-on
     ├── config.yaml                    # Add-on configuration
     ├── Dockerfile                     # Container build instructions
-    ├── README.md                      # Detailed add-on documentation
-    ├── CHANGELOG.md                   # Version history
+    ├── README.md                      # Beta add-on documentation
+    ├── CHANGELOG.md                   # Beta version history
     ├── LICENSE                        # MIT License
     └── rootfs/                        # Container filesystem
         ├── etc/

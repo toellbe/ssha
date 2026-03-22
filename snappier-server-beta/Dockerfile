@@ -24,7 +24,7 @@ RUN \
 
 # Build arguments
 ARG SNAPPIER_SERVER_VERSION=1.0.9
-ARG SNAPPIER_SERVER_DOWNLOAD_BASE_URL=https://snappierserver.app/files
+ARG SNAPPIER_SERVER_DOWNLOAD_BASE_URL=https://snappierserver.app/betaFiles
 
 ENV SNAPPIER_SERVER_VERSION=${SNAPPIER_SERVER_VERSION}
 
@@ -71,13 +71,13 @@ RUN chmod a+x /etc/services.d/*/run \
 
 # Labels
 LABEL \
-  io.hass.name="Snappier Server" \
+    io.hass.name="Snappier Server Beta" \
   io.hass.description="Self-hosted, lightweight recording and streaming service" \
   io.hass.arch="${BUILD_ARCH}" \
   io.hass.type="addon" \
   io.hass.version=${SNAPPIER_SERVER_VERSION} \
   maintainer="Home Assistant Community Add-ons" \
-  org.opencontainers.image.title="Snappier Server" \
+    org.opencontainers.image.title="Snappier Server Beta" \
   org.opencontainers.image.description="Self-hosted, lightweight recording and streaming service" \
   org.opencontainers.image.vendor="Home Assistant Community Add-ons" \
   org.opencontainers.image.authors="Home Assistant Community Add-ons" \
