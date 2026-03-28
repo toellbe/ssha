@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.1] - 2026-03-28
+
+### Fixed
+- EPG refresh interval was ignored and fell back to app default of 24h — `EPG_REFRESH_INTERVAL` is now correctly exported
+- Startup error "no such file or directory" for `/root/SnappierServer` — directory is now always created before `cd`
+- API token no longer appears in logs — sensitive token output is redacted
+
+### Added
+- `epg_folder` config option to set a custom EPG cache path (default: empty)
+- Startup log now shows EPG enabled state and configured refresh interval
+
 ## [1.2.0] - 2026-03-22
 
 ### Changed

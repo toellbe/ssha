@@ -15,6 +15,7 @@ export SNAPPIER_USE_CURL=$(bashio::config 'use_curl_to_download')
 export ENABLE_EPG=$(bashio::config 'enable_epg')
 export EPG_URL=$(bashio::config 'epg_url')
 export EPG_REFRESH_INTERVAL=$(bashio::config 'epg_refresh_interval')
+export EPG_FOLDER=$(bashio::config 'epg_folder')
 
 # Use fixed container ports - external mapping is handled by Home Assistant
 export SNAPPIER_PORT=8000
@@ -31,9 +32,11 @@ bashio::log.info "  Recordings: ${SNAPPIER_RECORDINGS_FOLDER}"
 bashio::log.info "  Movies: ${SNAPPIER_MOVIES_FOLDER}"
 bashio::log.info "  Series: ${SNAPPIER_SERIES_FOLDER}"
 bashio::log.info "  PVR: ${SNAPPIER_PVR_FOLDER}"
+bashio::log.info "  EPG enabled: ${ENABLE_EPG}"
+bashio::log.info "  EPG refresh interval: ${EPG_REFRESH_INTERVAL}h"
 
 # Prepare working directory and SSL cert path used by Snappier auto HTTPS mode.
-cd /root/SnappierServer || mkdir -p /root/SnappierServer && cd /root/SnappierServer
+mkdir -p /root/SnappierServer && cd /root/SnappierServer
 mkdir -p Recordings Movies TVSeries PVR
 
 SSL_CERT=$(bashio::config 'ssl_cert')
@@ -154,9 +157,10 @@ persist_api_token_option() {
 
 # Start Snappier Server and redact sensitive token output from logs.
 /usr/local/bin/snappier-server 2>&1 | while IFS= read -r line; do
-    if [[ "${line}" =~ \[Auth\]\ Generated\ API\ token:\ (.+)$ ]]; then
+    if [[ "${line}" =~ \.Auth\..*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
+       [[ "${line}" =~ [Aa][Pp][Ii][[:space:]][Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]]; then
         token="${BASH_REMATCH[1]}"
-        echo "[Auth] Generated API token: [REDACTED]"
+        echo "${line//${token}/[REDACTED]}"
         persist_api_token_option "${token}"
     else
         echo "${line}"

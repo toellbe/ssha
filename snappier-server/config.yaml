@@ -1,5 +1,5 @@
 name: Snappier Server Unofficial
-version: "1.2.0"
+version: "1.2.1"
 slug: snappier-server
 description: Self-hosted, lightweight recording and streaming service (stable)
 arch:
@@ -34,6 +34,7 @@ options:
   enable_epg: false
   epg_url: ""
   epg_refresh_interval: 24
+  epg_folder: ""
   recordings_folder: "/share/snappier/recordings"
   movies_folder: "/share/snappier/movies"
   series_folder: "/share/snappier/series"
@@ -49,6 +50,7 @@ schema:
   enable_epg: bool
   epg_url: str?
   epg_refresh_interval: int(1,168)
+  epg_folder: str?
   recordings_folder: str
   movies_folder: str
   series_folder: str
