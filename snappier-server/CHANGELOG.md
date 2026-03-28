@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2026-03-28
+
+### Fixed
+- EPG refresh interval was ignored and fell back to app default of 24h — `EPG_REFRESH_INTERVAL` is now correctly exported
+
 ## [1.2.1] - 2026-03-28
 
 ### Fixed
