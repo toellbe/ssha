@@ -56,6 +56,7 @@ download_speed_limit_mbs: 0
 enable_remux: true
 enable_epg: false
 epg_url: ""
+epg_urls_json: ""
 epg_refresh_interval: 24
 recordings_folder: "/share/snappier/recordings"
 movies_folder: "/share/snappier/movies"
@@ -75,7 +76,8 @@ ssl_key: "/ssl/privkey.pem"
 | `download_speed_limit_mbs` | Download speed limit in MB/s (0 = unlimited) | `0` |
 | `enable_remux` | Enable video remuxing | `true` |
 | `enable_epg` | Enable EPG (Electronic Program Guide) functionality | `false` |
-| `epg_url` | EPG (Electronic Program Guide) URL (optional) | `""` |
+| `epg_url` | Single EPG source URL | `""` |
+| `epg_urls_json` | Multiple EPG sources as JSON array (see format below) | `""` |
 | `epg_refresh_interval` | EPG refresh interval in hours (1-168) | `24` |
 | `recordings_folder` | Path for recordings | `/share/snappier/recordings` |
 | `movies_folder` | Path for movies | `/share/snappier/movies` |
@@ -85,6 +87,22 @@ ssl_key: "/ssl/privkey.pem"
 | `timezone` | Timezone for scheduling | `Europe/Berlin` |
 | `ssl_cert` | SSL certificate path (optional) | `/ssl/fullchain.pem` |
 | `ssl_key` | SSL private key path (optional) | `/ssl/privkey.pem` |
+
+### EPG Configuration
+
+You can configure EPG sources in two ways:
+
+- **Single source**: Set `epg_url` to a single URL string.
+- **Multiple sources**: Set `epg_urls_json` to a JSON array with the following format:
+
+```json
+[
+  {"url": "http://source1.com/epg.xml", "name": "Main", "priority": 1, "enabled": true},
+  {"url": "http://source2.com/epg.xml", "name": "Backup", "priority": 2, "enabled": true}
+]
+```
+
+If `epg_urls_json` is set, it takes precedence over `epg_url`.
 
 ### HTTPS / SSL
 
