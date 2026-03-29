@@ -32,7 +32,7 @@ options:
   download_speed_limit_mbs: 0
   enable_remux: true
   enable_epg: false
-  epg_urls: []
+  epg_url: ""
   epg_refresh_interval: 24
   epg_folder: ""
   recordings_folder: "/share/snappier/recordings"
@@ -48,8 +48,7 @@ schema:
   download_speed_limit_mbs: int(0,)
   enable_remux: bool
   enable_epg: bool
-  epg_urls:
-    - str?
+  epg_url: str?
   epg_refresh_interval: int(1,168)
   epg_folder: str?
   recordings_folder: str
