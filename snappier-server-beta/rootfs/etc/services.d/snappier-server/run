@@ -22,7 +22,7 @@ _epg_folder=$(bashio::config 'epg_folder')
 export SNAPPIER_PORT=8000
 export TZ=$(bashio::config 'timezone')
 WEB_PROTOCOL="http"
-export HOME="/root/SnappierServer"
+export HOME="/share/snappier"
 
 # Create necessary directories
 mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}"
@@ -160,9 +160,8 @@ persist_api_token_option() {
 }
 
 # Start Snappier Server and redact sensitive token output from logs.
-_config_folder=$(bashio::config 'config_folder')
-mkdir -p "${_config_folder}"
-/usr/local/bin/snappier-server -config "${_config_folder}/config.json" 2>&1 | while IFS= read -r line; do
+mkdir -p /share/snappier
+/usr/local/bin/snappier-server -config /share/snappier/config.json 2>&1 | while IFS= read -r line; do
     if [[ "${line}" =~ \.Auth\..*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
        [[ "${line}" =~ [Aa][Pp][Ii][[:space:]][Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
        [[ "${line}" =~ \[Auth\].*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]]; then

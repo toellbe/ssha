@@ -35,7 +35,6 @@ options:
   epg_urls: []
   epg_refresh_interval: 24
   epg_folder: ""
-  config_folder: "/share/snappier"
   recordings_folder: "/share/snappier/recordings"
   movies_folder: "/share/snappier/movies"
   series_folder: "/share/snappier/series"
@@ -53,7 +52,6 @@ schema:
     - str?
   epg_refresh_interval: int(1,168)
   epg_folder: str?
-  config_folder: str
   recordings_folder: str
   movies_folder: str
   series_folder: str
