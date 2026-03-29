@@ -108,68 +108,18 @@ bashio::log.info "  PROTOCOL=${WEB_PROTOCOL}"
 bashio::log.info "  RECORDINGS_FOLDER=${RECORDINGS_FOLDER}"
 bashio::log.info "  Working directory: $(pwd)"
 
-persist_api_token_option() {
-    local token="$1"
-    local current_token
+# Write API token into snappier config.json before starting
+_snappier_config_dir="${HOME}/SnappierServer"
+_snappier_config="${_snappier_config_dir}/config.json"
+_api_token="$(bashio::config 'api_token')"
+mkdir -p "${_snappier_config_dir}"
+if [ -f "${_snappier_config}" ]; then
+    _updated="$(jq --arg token "${_api_token}" '.api_token = $token' "${_snappier_config}")"
+    echo "${_updated}" > "${_snappier_config}"
+else
+    jq -n --arg token "${_api_token}" '{"api_token": $token}' > "${_snappier_config}"
+fi
+bashio::log.info "API token written to ${_snappier_config}"
 
-    current_token="$(bashio::config 'api_token')"
-    if [ "${token}" = "${current_token}" ]; then
-        return 0
-    fi
-
-    local payload
-    payload="$(jq -n \
-        --argjson use_curl_to_download "$(bashio::config 'use_curl_to_download')" \
-        --argjson download_speed_limit_mbs "$(bashio::config 'download_speed_limit_mbs')" \
-        --argjson enable_remux "$(bashio::config 'enable_remux')" \
-        --argjson enable_epg "$(bashio::config 'enable_epg')" \
-        --argjson epg_urls "$(bashio::config 'epg_urls' | jq -c '.')" \
-        --argjson epg_refresh_interval "$(bashio::config 'epg_refresh_interval')" \
-        --arg recordings_folder "$(bashio::config 'recordings_folder')" \
-        --arg movies_folder "$(bashio::config 'movies_folder')" \
-        --arg series_folder "$(bashio::config 'series_folder')" \
-        --arg pvr_folder "$(bashio::config 'pvr_folder')" \
-        --arg api_token "${token}" \
-        --arg timezone "$(bashio::config 'timezone')" \
-        '{
-            options: {
-                use_curl_to_download: $use_curl_to_download,
-                download_speed_limit_mbs: $download_speed_limit_mbs,
-                enable_remux: $enable_remux,
-                enable_epg: $enable_epg,
-                epg_urls: $epg_urls,
-                epg_refresh_interval: $epg_refresh_interval,
-                recordings_folder: $recordings_folder,
-                movies_folder: $movies_folder,
-                series_folder: $series_folder,
-                pvr_folder: $pvr_folder,
-                api_token: $api_token,
-                timezone: $timezone
-            }
-        }')"
-
-    if curl -sS \
-        -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
-        -H "Content-Type: application/json" \
-        -d "${payload}" \
-        "http://supervisor/addons/self/options" >/dev/null; then
-        bashio::log.info "Stored API token in add-on settings (api_token)."
-    else
-        bashio::log.warning "Could not persist API token to add-on settings."
-    fi
-}
-
-# Start Snappier Server and redact sensitive token output from logs.
-re_token='\[Auth\].*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,})'
-mkdir -p /share/snappier
-/usr/local/bin/snappier-server 2>&1 | while IFS= read -r line; do
-    if [[ "${line}" =~ $re_token ]]; then
-        token="${BASH_REMATCH[1]}"
-        echo "${line//${token}/[REDACTED]}"
-        persist_api_token_option "${token}"
-    else
-        echo "${line}"
-    fi
-done
-
-exit ${PIPESTATUS[0]}
+# Start Snappier Server
+exec /usr/local/bin/snappier-server
