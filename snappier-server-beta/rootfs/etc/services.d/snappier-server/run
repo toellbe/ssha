@@ -22,7 +22,7 @@ _epg_folder=$(bashio::config 'epg_folder')
 export SNAPPIER_PORT=8000
 export TZ=$(bashio::config 'timezone')
 WEB_PROTOCOL="http"
-export HOME="/share/snappier"
+export HOME="/root/SnappierServer"
 
 # Create necessary directories
 mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}"
@@ -160,11 +160,10 @@ persist_api_token_option() {
 }
 
 # Start Snappier Server and redact sensitive token output from logs.
+re_token='\[Auth\].*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,})'
 mkdir -p /share/snappier
 /usr/local/bin/snappier-server 2>&1 | while IFS= read -r line; do
-    if [[ "${line}" =~ \.Auth\..*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
-       [[ "${line}" =~ [Aa][Pp][Ii][[:space:]][Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
-       [[ "${line}" =~ \[Auth\].*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]]; then
+    if [[ "${line}" =~ $re_token ]]; then
         token="${BASH_REMATCH[1]}"
         echo "${line//${token}/[REDACTED]}"
         persist_api_token_option "${token}"
