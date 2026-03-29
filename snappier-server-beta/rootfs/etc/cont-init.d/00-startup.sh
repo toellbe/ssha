@@ -38,7 +38,7 @@ if [ -z "${_api_token}" ]; then
         --argjson download_speed_limit_mbs "$(bashio::config 'download_speed_limit_mbs')" \
         --argjson enable_remux "$(bashio::config 'enable_remux')" \
         --argjson enable_epg "$(bashio::config 'enable_epg')" \
-        --argjson epg_urls "$(bashio::config 'epg_urls' | jq -c '.')" \
+        --argjson epg_urls "$(bashio::config 'epg_urls' | jq -c '[to_entries[] | {"url": .value, "name": ("Source " + (.key + 1 | tostring)), "priority": (.key + 1), "enabled": true}]')" \
         --argjson epg_refresh_interval "$(bashio::config 'epg_refresh_interval')" \
         --arg epg_folder "$(bashio::config 'epg_folder')" \
         --arg recordings_folder "$(bashio::config 'recordings_folder')" \
