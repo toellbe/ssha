@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.4-beta.1] - 2026-03-29
+
+### Added
+- `config_folder` config option to set a custom path for the Snappier Server config file (default: `/share/snappier`) — passed to the binary as `--config <config_folder>/config.json`
+
+### Fixed
+- API token was not redacted from logs — `[Auth] Generated API token:` pattern is now correctly detected and replaced with `[REDACTED]`
+- API token was never persisted to add-on settings due to the unmatched regex — `persist_api_token_option` is now correctly invoked
+
 ## [1.2.3-beta.1] - 2026-03-29
 
 ### Changed
