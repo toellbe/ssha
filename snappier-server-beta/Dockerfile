@@ -28,13 +28,6 @@ ARG SNAPPIER_SERVER_DOWNLOAD_BASE_URL=https://snappierserver.app/betaFiles
 
 ENV SNAPPIER_SERVER_VERSION=${SNAPPIER_SERVER_VERSION}
 
-# Create application directories
-RUN mkdir -p /opt/snappier-server \
-    && mkdir -p /data/recordings \
-    && mkdir -p /data/movies \
-    && mkdir -p /data/series \
-    && mkdir -p /data/pvr
-
 # Copy all rootfs files first
 COPY rootfs/ /
 

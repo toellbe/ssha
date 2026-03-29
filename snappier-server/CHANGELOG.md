@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.3] - 2026-03-29
+
+### Changed
+- Working directory `/root/SnappierServer` is now used as `$HOME` — add-on no longer writes to `/data`
+- Removed unused `/data/recordings`, `/data/movies`, `/data/series`, `/data/pvr` directories from container image
+
 ## [1.2.2] - 2026-03-28
 
 ### Fixed

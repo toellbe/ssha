@@ -22,7 +22,7 @@ _epg_folder=$(bashio::config 'epg_folder')
 export SNAPPIER_PORT=8000
 export TZ=$(bashio::config 'timezone')
 WEB_PROTOCOL="http"
-export HOME="/data"
+export HOME="/root/SnappierServer"
 
 # Create necessary directories
 mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}"
