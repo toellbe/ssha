@@ -161,7 +161,7 @@ persist_api_token_option() {
 
 # Start Snappier Server and redact sensitive token output from logs.
 mkdir -p /share/snappier
-/usr/local/bin/snappier-server -config /share/snappier/config.json 2>&1 | while IFS= read -r line; do
+/usr/local/bin/snappier-server 2>&1 | while IFS= read -r line; do
     if [[ "${line}" =~ \.Auth\..*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
        [[ "${line}" =~ [Aa][Pp][Ii][[:space:]][Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
        [[ "${line}" =~ \[Auth\].*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]]; then
