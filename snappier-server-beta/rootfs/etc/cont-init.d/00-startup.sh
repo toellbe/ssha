@@ -63,7 +63,7 @@ if [ -z "${_api_token}" ]; then
                 api_token: $api_token,
                 timezone: $timezone
             }
-        }')")
+        }')"
 
     if curl -sS \
         -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
