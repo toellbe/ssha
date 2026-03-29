@@ -78,5 +78,13 @@ else
     bashio::log.info "API token already set."
 fi
 
+# Always write a fresh config.json with only the API token before starting.
+# All other settings are passed via environment variables in the run script.
+_snappier_config="/root/SnappierServer/SnappierServer/config.json"
+mkdir -p "$(dirname "${_snappier_config}")"
+rm -f "${_snappier_config}"
+jq -n --arg token "${_api_token}" '{"api_token": $token}' > "${_snappier_config}"
+bashio::log.info "Fresh config.json written with API token."
+
 bashio::log.info "Snappier Server Add-on initialization complete!"
 bashio::log.info "Access the web interface at: http://[YOUR_HA_IP]:7429"

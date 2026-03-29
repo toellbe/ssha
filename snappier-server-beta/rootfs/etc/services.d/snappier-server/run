@@ -108,18 +108,5 @@ bashio::log.info "  PROTOCOL=${WEB_PROTOCOL}"
 bashio::log.info "  RECORDINGS_FOLDER=${RECORDINGS_FOLDER}"
 bashio::log.info "  Working directory: $(pwd)"
 
-# Write API token into snappier config.json before starting
-_snappier_config_dir="${HOME}/SnappierServer"
-_snappier_config="${_snappier_config_dir}/config.json"
-_api_token="$(bashio::config 'api_token')"
-mkdir -p "${_snappier_config_dir}"
-if [ -f "${_snappier_config}" ]; then
-    _updated="$(jq --arg token "${_api_token}" '.api_token = $token' "${_snappier_config}")"
-    echo "${_updated}" > "${_snappier_config}"
-else
-    jq -n --arg token "${_api_token}" '{"api_token": $token}' > "${_snappier_config}"
-fi
-bashio::log.info "API token written to ${_snappier_config}"
-
 # Start Snappier Server
 exec /usr/local/bin/snappier-server
