@@ -14,6 +14,7 @@ export SNAPPIER_ENABLE_REMUX=$(bashio::config 'enable_remux')
 export SNAPPIER_USE_CURL=$(bashio::config 'use_curl_to_download')
 export ENABLE_EPG=$(bashio::config 'enable_epg')
 export EPG_URLS=$(bashio::config 'epg_urls' | jq -c '[to_entries[] | {"url": .value, "name": ("Source " + (.key + 1 | tostring)), "priority": (.key + 1), "enabled": true}]')
+export EPG_URL=$(bashio::config 'epg_urls' | jq -r '.[0] // empty')
 export EPG_REFRESH_INTERVAL=$(bashio::config 'epg_refresh_interval')
 _epg_folder=$(bashio::config 'epg_folder')
 [ -n "${_epg_folder}" ] && export EPG_FOLDER="${_epg_folder}"
