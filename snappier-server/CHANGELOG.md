@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Updated Snappier Server CLI to stable `v1.5.0`
 
+### Added
+- `epg_urls_json` config option to define multiple EPG sources as a JSON array
+- API token is now auto-generated on first start if not configured, and persisted to add-on settings
+- Fresh `config.json` with API token is written to `/root/SnappierServer/SnappierServer/config.json` on every startup
+- `EPG_URLS` environment variable is now exported when `epg_urls_json` is set
+- `epg_folder` and `epg_urls_json` are now included in the persisted add-on settings payload
+
 ## [1.2.3] - 2026-03-29
 
 ### Changed

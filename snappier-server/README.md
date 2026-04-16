@@ -1,7 +1,7 @@
 # Home Assistant Add-on: Snappier Server
 
-**Version:** `1.2.0`  
-**Runtime:** Snappier Server CLI (stable) `v1.3.4`
+**Version:** `1.3.0`  
+**Runtime:** Snappier Server CLI (stable) `v1.5.0`
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
@@ -51,6 +51,7 @@ download_speed_limit_mbs: 0
 enable_remux: true
 enable_epg: false
 epg_url: ""
+epg_urls_json: ""
 epg_refresh_interval: 24
 recordings_folder: "/share/snappier/recordings"
 movies_folder: "/share/snappier/movies"
@@ -70,7 +71,8 @@ ssl_key: "/ssl/privkey.pem"
 | `download_speed_limit_mbs` | Download speed limit in MB/s (0 = unlimited) | `0` |
 | `enable_remux` | Enable video remuxing | `true` |
 | `enable_epg` | Enable EPG (Electronic Program Guide) functionality | `false` |
-| `epg_url` | EPG (Electronic Program Guide) URL (optional) | `""` |
+| `epg_url` | Single EPG source URL | `""` |
+| `epg_urls_json` | Multiple EPG sources as JSON array (see format below) | `""` |
 | `epg_refresh_interval` | EPG refresh interval in hours (1-168) | `24` |
 | `recordings_folder` | Path for recordings | `/share/snappier/recordings` |
 | `movies_folder` | Path for movies | `/share/snappier/movies` |
@@ -80,6 +82,22 @@ ssl_key: "/ssl/privkey.pem"
 | `timezone` | Timezone for scheduling | `Europe/Berlin` |
 | `ssl_cert` | SSL certificate path (optional) | `/ssl/fullchain.pem` |
 | `ssl_key` | SSL private key path (optional) | `/ssl/privkey.pem` |
+
+### EPG Configuration
+
+You can configure EPG sources in two ways:
+
+- **Single source**: Set `epg_url` to a single URL string.
+- **Multiple sources**: Set `epg_urls_json` to a JSON array with the following format:
+
+```json
+[
+  {"url": "http://source1.com/epg.xml", "name": "Main", "priority": 1, "enabled": true},
+  {"url": "http://source2.com/epg.xml", "name": "Backup", "priority": 2, "enabled": true}
+]
+```
+
+If `epg_urls_json` is set, it takes precedence over `epg_url`.
 
 ### HTTPS / SSL
 
@@ -138,12 +156,12 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server**: CLI binaries `v1.3.4` from `https://snappierserver.app/files/`
+- **Snappier Server**: CLI binaries `v1.5.0` from `https://snappierserver.app/files/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 
 ### Build Information
-- Uses Snappier Server stable CLI binaries (not Docker wrapper)
+- Uses Snappier Server stable CLI binaries `v1.5.0` (not Docker wrapper)
 - Simplified single-service architecture
 - Fixed port mapping for stability
 - Persistent storage integration
