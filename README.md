@@ -2,8 +2,8 @@
 
 This repository contains two add-ons:
 
-- **Snappier Server** (stable) - Runtime `v1.5.0`
-- **Snappier Server Beta** (beta) - Runtime `v1.5.0ab`
+- **Snappier Server** (stable)
+- **Snappier Server Beta** (beta)
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
