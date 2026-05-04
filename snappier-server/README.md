@@ -1,7 +1,7 @@
 # Home Assistant Add-on: Snappier Server
 
-**Version:** `1.3.0`  
-**Runtime:** Snappier Server CLI (stable) `v1.5.0`
+**Version:** `1.3.2`  
+**Runtime:** Snappier Server CLI (stable) `v1.5.4-1`
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
