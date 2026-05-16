@@ -1,7 +1,7 @@
 # Home Assistant Add-on: Snappier Server Beta
 
-**Version:** `1.2.7-beta.1`  
-**Runtime:** Snappier Server CLI **beta** `v1.5.4-2`
+**Version:** `1.2.8-beta.1`  
+**Runtime:** Snappier Server CLI **beta** `v1.5.5-3`
 
 > **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
 > This add-on is currently under active development. Not all features have been fully tested.  

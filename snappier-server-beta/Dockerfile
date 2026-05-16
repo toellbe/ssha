@@ -23,7 +23,7 @@ RUN \
     && rm -rf /var/lib/apt/lists/*
 
 # Build arguments
-ARG SNAPPIER_SERVER_VERSION=1.5.4-2
+ARG SNAPPIER_SERVER_VERSION=1.5.5-3
 ARG SNAPPIER_SERVER_DOWNLOAD_BASE_URL=https://snappierserver.app/betaFiles
 
 ENV SNAPPIER_SERVER_VERSION=${SNAPPIER_SERVER_VERSION}
