@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.9-beta.1] - 2026-05-19
+
+### Changed
+- Bumped Home Assistant beta add-on version to `1.2.9-beta.1`
+
 ## [1.2.8-beta.1] - 2026-05-16
 
 ### Changed
