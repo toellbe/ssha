@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.10-beta.1] - 2026-05-30
+
+### Changed
+- Updated Snappier Server CLI to beta `v1.5.6-2` (amd64 + aarch64)
+
 ## [1.2.9-beta.1] - 2026-05-19
 
 ### Changed
