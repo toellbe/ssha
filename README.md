@@ -16,7 +16,7 @@ This repository provides Snappier Server as a Home Assistant add-on, allowing it
 
 **The Snappier IPTV App is required** to interact with the server and manage recordings, downloads, and schedules.
 
-With the **Snappier IPTV App**, users can effortlessly schedule live TV recordings, save CatchupTV, and download movies or entire TV series from their IPTV provider. Snappier Server takes care of these requests in the background. Once a recording or download begins, Snappier IPTV itself can be closed — the server continues independently.
+With the **Snappier IPTV App**, users can effortlessly schedule live TV recordings, save CatchupTV, and download movies or entire TV series from their IPTV provider. Snappier Server takes care of [...]
 
 ## Features
 
@@ -34,12 +34,12 @@ This add-on supports the full feature set of Snappier Server, including:
 ## Installation
 
 1. Add this repository to your Home Assistant add-on store:
-   - Go to **Supervisor** > **Add-on Store** > **⋮** > **Repositories**
-   - Add the repository URL: `https://github.com/toellbe/ssha`
+    - Go to **Supervisor** > **Add-on Store** > **⋮** > **Repositories**
+    - Add the repository URL: `https://github.com/toellbe/ssha`
 
 2. Choose one add-on and click **Install**:
-    - "Snappier Server" (stable)
-    - "Snappier Server Beta" (beta)
+     - "Snappier Server" (stable)
+     - "Snappier Server Beta" (beta)
 
 3. Configure the add-on (see Configuration section below)
 
@@ -172,6 +172,12 @@ This project is licensed under the MIT License. See [LICENSE](./snappier-server/
 - [Snappier IPTV](https://snappieriptv.app/) by Sarah Bainbridge
 - Home Assistant add-on adaptation and integration
 - Community feedback and contributions
+
+## Support My Work
+
+If you find this add-on useful and would like to support its development, you can buy me a coffee:
+
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/toellbe)
 
 ---
 
