@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - Updated Snappier Server CLI to `v2.0.0-2` (amd64 + aarch64)
 
 ### Fixed
-- Config file (`config.json`) was stored inside the container (`/root/SnappierServer`) and lost on restart — it is now persisted privately at `/config/snappier/config.json` via the `-config` flag, keeping credentials out of the shared `/share` folder
+- Config file (`config.json`) was stored inside the container (`/root/SnappierServer`) and lost on restart — it is now persisted privately at `/config/snappier/config.json` via the `--config` flag, keeping credentials out of the shared `/share` folder
 
 ## [1.3.4] - 2026-08-02
 

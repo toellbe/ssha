@@ -111,4 +111,4 @@ bashio::log.info "  RECORDINGS_FOLDER=${RECORDINGS_FOLDER}"
 bashio::log.info "  Working directory: $(pwd)"
 
 # Start Snappier Server
-exec /usr/local/bin/snappier-server -config /config/snappier/config.json
+exec /usr/local/bin/snappier-server --config /config/snappier/config.json
