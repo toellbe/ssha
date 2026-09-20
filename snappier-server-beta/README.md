@@ -137,6 +137,8 @@ The add-on stores recordings and downloads in the `/share/snappier/` directory:
 - **TV Series**: `/share/snappier/series/`
 - **PVR**: `/share/snappier/pvr/`
 
+The Snappier Server configuration file (`config.json`) is persisted in the add-on's private config directory at `/config/snappier/config.json` (via `addon_config`), so your settings (including credentials) survive container restarts and updates and are not exposed in the shared `/share` folder.
+
 These directories are accessible from other Home Assistant add-ons.
 
 ## Troubleshooting

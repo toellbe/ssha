@@ -24,7 +24,7 @@ _epg_folder=$(bashio::config 'epg_folder')
 export SNAPPIER_PORT=8000
 export TZ=$(bashio::config 'timezone')
 WEB_PROTOCOL="http"
-export HOME="/root/SnappierServer"
+export HOME="/config/snappier"
 
 # Create necessary directories
 mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}"
@@ -39,7 +39,7 @@ bashio::log.info "  EPG enabled: ${ENABLE_EPG}"
 bashio::log.info "  EPG refresh interval: ${EPG_REFRESH_INTERVAL}h"
 
 # Prepare working directory and SSL cert path used by Snappier auto HTTPS mode.
-mkdir -p /root/SnappierServer && cd /root/SnappierServer
+mkdir -p /config/snappier && cd /config/snappier
 mkdir -p Recordings Movies TVSeries PVR
 
 SSL_CERT=$(bashio::config 'ssl_cert')
@@ -111,4 +111,4 @@ bashio::log.info "  RECORDINGS_FOLDER=${RECORDINGS_FOLDER}"
 bashio::log.info "  Working directory: $(pwd)"
 
 # Start Snappier Server
-exec /usr/local/bin/snappier-server
+exec /usr/local/bin/snappier-server -config /config/snappier/config.json
