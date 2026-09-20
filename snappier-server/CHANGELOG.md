@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.5] - 2026-09-20
+
+### Changed
+- Updated Snappier Server CLI to `v2.0.0-2` (amd64 + aarch64)
+
 ## [1.3.4] - 2026-08-02
 
 ### Changed

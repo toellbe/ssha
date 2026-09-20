@@ -1,7 +1,7 @@
 # Home Assistant Add-on: Snappier Server Beta
 
-**Version:** `1.2.11-beta.1`  
-**Runtime:** Snappier Server CLI **beta** `v1.6.0-1`
+**Version:** `1.2.12-beta.1`  
+**Runtime:** Snappier Server CLI **beta** `v2.0.0-2`
 
 > **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
 > This add-on is currently under active development. Not all features have been fully tested.  
@@ -161,12 +161,12 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server**: CLI binaries `v1.5.0ab` from `https://snappierserver.app/betaFiles/`
+- **Snappier Server**: CLI binaries `v2.0.0-2` from `https://snappierserver.app/files/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 
 ### Build Information
-- Uses Snappier Server beta CLI binaries (not Docker wrapper)
+- Uses Snappier Server beta CLI binaries `v2.0.0-2` (not Docker wrapper)
 - Simplified single-service architecture
 - Fixed port mapping for stability
 - Persistent storage integration
