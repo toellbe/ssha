@@ -1,5 +1,5 @@
 name: Snappier Server Unofficial
-version: "1.3.5"
+version: "1.4.0"
 slug: snappier-server
 description: Self-hosted, lightweight recording and streaming service (stable)
 arch:
@@ -41,6 +41,7 @@ options:
   movies_folder: "/share/snappier/movies"
   series_folder: "/share/snappier/series"
   pvr_folder: "/share/snappier/pvr"
+  xtream_folder: "/config/snappier/SnappierServer/Xtream"
   api_token: ""
   timezone: "Europe/Berlin"
   ssl_cert: "/ssl/fullchain.pem"
@@ -58,6 +59,7 @@ schema:
   movies_folder: str
   series_folder: str
   pvr_folder: str
+  xtream_folder: str
   api_token: str?
   timezone: str
   ssl_cert: str?

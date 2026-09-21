@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2026-09-21
+
+### Changed
+- Updated Snappier Server CLI to `v2.0.1-1` (amd64 + aarch64)
+
+### Added
+- `xtream_folder` config option to store Xtream data (`SnappierServer/Xtream`) in the persistent private config dir — defaults to `/config/snappier/SnappierServer/Xtream`
+
 ## [1.3.5] - 2026-09-20
 
 ### Changed

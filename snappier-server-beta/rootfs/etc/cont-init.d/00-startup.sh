@@ -12,6 +12,7 @@ MOVIES_FOLDER=$(bashio::config 'movies_folder')
 SERIES_FOLDER=$(bashio::config 'series_folder')
 PVR_FOLDER=$(bashio::config 'pvr_folder')
 EPG_FOLDER=$(bashio::config 'epg_folder')
+XTREAM_FOLDER=$(bashio::config 'xtream_folder')
 
 # Create directories if they don't exist
 mkdir -p "${RECORDINGS_FOLDER}"
@@ -19,6 +20,7 @@ mkdir -p "${MOVIES_FOLDER}"
 mkdir -p "${SERIES_FOLDER}"
 mkdir -p "${PVR_FOLDER}"
 [ -n "${EPG_FOLDER}" ] && mkdir -p "${EPG_FOLDER}"
+mkdir -p "${XTREAM_FOLDER}"
 
 bashio::log.info "Storage directories initialized:"
 bashio::log.info "  - Recordings: ${RECORDINGS_FOLDER}"
@@ -26,6 +28,7 @@ bashio::log.info "  - Movies: ${MOVIES_FOLDER}"
 bashio::log.info "  - Series: ${SERIES_FOLDER}"
 bashio::log.info "  - PVR: ${PVR_FOLDER}"
 [ -n "${EPG_FOLDER}" ] && bashio::log.info "  - EPG: ${EPG_FOLDER}"
+bashio::log.info "  - Xtream: ${XTREAM_FOLDER}"
 
 # Generate API token if not yet set
 _api_token="$(bashio::config 'api_token')"
@@ -45,6 +48,7 @@ if [ -z "${_api_token}" ]; then
         --arg movies_folder "$(bashio::config 'movies_folder')" \
         --arg series_folder "$(bashio::config 'series_folder')" \
         --arg pvr_folder "$(bashio::config 'pvr_folder')" \
+        --arg xtream_folder "$(bashio::config 'xtream_folder')" \
         --arg api_token "${_api_token}" \
         --arg timezone "$(bashio::config 'timezone')" \
         '{
@@ -60,6 +64,7 @@ if [ -z "${_api_token}" ]; then
                 movies_folder: $movies_folder,
                 series_folder: $series_folder,
                 pvr_folder: $pvr_folder,
+                xtream_folder: $xtream_folder,
                 api_token: $api_token,
                 timezone: $timezone
             }

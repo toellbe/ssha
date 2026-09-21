@@ -10,6 +10,7 @@ export SNAPPIER_RECORDINGS_FOLDER=$(bashio::config 'recordings_folder')
 export SNAPPIER_MOVIES_FOLDER=$(bashio::config 'movies_folder')
 export SNAPPIER_SERIES_FOLDER=$(bashio::config 'series_folder')
 export SNAPPIER_PVR_FOLDER=$(bashio::config 'pvr_folder')
+export SNAPPIER_XTREAM_FOLDER=$(bashio::config 'xtream_folder')
 export SNAPPIER_ENABLE_REMUX=$(bashio::config 'enable_remux')
 export SNAPPIER_USE_CURL=$(bashio::config 'use_curl_to_download')
 export ENABLE_EPG=$(bashio::config 'enable_epg')
@@ -27,7 +28,7 @@ WEB_PROTOCOL="http"
 export HOME="/config/snappier"
 
 # Create necessary directories
-mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}"
+mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}" "${SNAPPIER_XTREAM_FOLDER}"
 
 bashio::log.info "Snappier Server configuration:"
 bashio::log.info "  Port: ${SNAPPIER_PORT}"
@@ -35,6 +36,7 @@ bashio::log.info "  Recordings: ${SNAPPIER_RECORDINGS_FOLDER}"
 bashio::log.info "  Movies: ${SNAPPIER_MOVIES_FOLDER}"
 bashio::log.info "  Series: ${SNAPPIER_SERIES_FOLDER}"
 bashio::log.info "  PVR: ${SNAPPIER_PVR_FOLDER}"
+bashio::log.info "  Xtream: ${SNAPPIER_XTREAM_FOLDER}"
 bashio::log.info "  EPG enabled: ${ENABLE_EPG}"
 bashio::log.info "  EPG refresh interval: ${EPG_REFRESH_INTERVAL}h"
 
@@ -99,6 +101,7 @@ export RECORDINGS_FOLDER="${SNAPPIER_RECORDINGS_FOLDER}"
 export MOVIES_FOLDER="${SNAPPIER_MOVIES_FOLDER}"
 export SERIES_FOLDER="${SNAPPIER_SERIES_FOLDER}"
 export PVR_FOLDER="${SNAPPIER_PVR_FOLDER}"
+export XTREAM_FOLDER="${SNAPPIER_XTREAM_FOLDER}"
 export DOWNLOAD_SPEED_LIMIT_MBS="${SNAPPIER_DOWNLOAD_SPEED_LIMIT}"
 export ENABLE_EPG="${ENABLE_EPG}"
 export EPG_URL="${EPG_URL}"

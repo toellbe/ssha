@@ -1,7 +1,7 @@
 # Home Assistant Add-on: Snappier Server Beta
 
-**Version:** `1.2.12-beta.1`  
-**Runtime:** Snappier Server CLI **beta** `v2.0.0-2`
+**Version:** `1.3.0-beta.1`  
+**Runtime:** Snappier Server CLI **beta** `v2.0.1-1`
 
 > **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
 > This add-on is currently under active development. Not all features have been fully tested.  
@@ -62,6 +62,7 @@ recordings_folder: "/share/snappier/recordings"
 movies_folder: "/share/snappier/movies"
 series_folder: "/share/snappier/series"
 pvr_folder: "/share/snappier/pvr"
+xtream_folder: "/config/snappier/SnappierServer/Xtream"
 api_token: ""
 timezone: "Europe/Berlin"
 ssl_cert: "/ssl/fullchain.pem"
@@ -83,6 +84,7 @@ ssl_key: "/ssl/privkey.pem"
 | `movies_folder` | Path for movies | `/share/snappier/movies` |
 | `series_folder` | Path for TV series | `/share/snappier/series` |
 | `pvr_folder` | Path for PVR recordings | `/share/snappier/pvr` |
+| `xtream_folder` | Path for Xtream data (private, persistent) | `/config/snappier/SnappierServer/Xtream` |
 | `api_token` | Auto-filled generated API token (managed by add-on) | `""` |
 | `timezone` | Timezone for scheduling | `Europe/Berlin` |
 | `ssl_cert` | SSL certificate path (optional) | `/ssl/fullchain.pem` |
@@ -137,7 +139,7 @@ The add-on stores recordings and downloads in the `/share/snappier/` directory:
 - **TV Series**: `/share/snappier/series/`
 - **PVR**: `/share/snappier/pvr/`
 
-The Snappier Server configuration file (`config.json`) is persisted in the add-on's private config directory at `/config/snappier/config.json` (via `addon_config`), so your settings (including credentials) survive container restarts and updates and are not exposed in the shared `/share` folder.
+The Snappier Server configuration file (`config.json`) and Xtream data (`SnappierServer/Xtream`) are persisted in the add-on's private config directory at `/config/snappier/` (via `addon_config`), so your settings (including credentials) and streaming data survive container restarts and updates and are not exposed in the shared `/share` folder.
 
 These directories are accessible from other Home Assistant add-ons.
 
@@ -163,12 +165,12 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server**: CLI binaries `v2.0.0-2` from `https://snappierserver.app/files/`
+- **Snappier Server**: CLI binaries `v2.0.1-1` from `https://snappierserver.app/files/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 
 ### Build Information
-- Uses Snappier Server beta CLI binaries `v2.0.0-2` (not Docker wrapper)
+- Uses Snappier Server beta CLI binaries `v2.0.1-1` (not Docker wrapper)
 - Simplified single-service architecture
 - Fixed port mapping for stability
 - Persistent storage integration
