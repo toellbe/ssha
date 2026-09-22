@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1-beta.1] - 2026-09-22
+
+### Changed
+- Bumped Home Assistant beta add-on version to `1.3.1-beta.1`
+- Updated Snappier Server CLI to `v2.0.2-4` (amd64 + aarch64)
+
 ## [1.3.0-beta.1] - 2026-09-21
 
 ### Changed
