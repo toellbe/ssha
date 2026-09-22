@@ -14,13 +14,16 @@ PVR_FOLDER=$(bashio::config 'pvr_folder')
 EPG_FOLDER=$(bashio::config 'epg_folder')
 XTREAM_FOLDER=$(bashio::config 'xtream_folder')
 
-# Create directories if they don't exist
-mkdir -p "${RECORDINGS_FOLDER}"
-mkdir -p "${MOVIES_FOLDER}"
-mkdir -p "${SERIES_FOLDER}"
-mkdir -p "${PVR_FOLDER}"
-[ -n "${EPG_FOLDER}" ] && mkdir -p "${EPG_FOLDER}"
-mkdir -p "${XTREAM_FOLDER}"
+# Create directories only when the corresponding config option is non-empty.
+for directory in \
+    "${RECORDINGS_FOLDER}" \
+    "${MOVIES_FOLDER}" \
+    "${SERIES_FOLDER}" \
+    "${PVR_FOLDER}" \
+    "${EPG_FOLDER}" \
+    "${XTREAM_FOLDER}"; do
+    [ -n "${directory}" ] && mkdir -p "${directory}"
+done
 
 bashio::log.info "Storage directories initialized:"
 bashio::log.info "  - Recordings: ${RECORDINGS_FOLDER}"
