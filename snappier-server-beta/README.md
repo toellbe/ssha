@@ -165,7 +165,7 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server**: CLI binaries `v2.0.2-4` from `https://snappierserver.app/files/`
+- **Snappier Server**: CLI binaries `v2.0.2-4` from `https://snappierserver.app/betaFiles/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 
