@@ -14,13 +14,16 @@ PVR_FOLDER=$(bashio::config 'pvr_folder')
 EPG_FOLDER=$(bashio::config 'epg_folder')
 XTREAM_FOLDER=$(bashio::config 'xtream_folder')
 
-# Create directories if they don't exist
-mkdir -p "${RECORDINGS_FOLDER}"
-mkdir -p "${MOVIES_FOLDER}"
-mkdir -p "${SERIES_FOLDER}"
-mkdir -p "${PVR_FOLDER}"
-[ -n "${EPG_FOLDER}" ] && mkdir -p "${EPG_FOLDER}"
-mkdir -p "${XTREAM_FOLDER}"
+# Create directories only when the corresponding config option is non-empty.
+for directory in \
+    "${RECORDINGS_FOLDER}" \
+    "${MOVIES_FOLDER}" \
+    "${SERIES_FOLDER}" \
+    "${PVR_FOLDER}" \
+    "${EPG_FOLDER}" \
+    "${XTREAM_FOLDER}"; do
+    [ -n "${directory}" ] && mkdir -p "${directory}"
+done
 
 bashio::log.info "Storage directories initialized:"
 bashio::log.info "  - Recordings: ${RECORDINGS_FOLDER}"
@@ -42,6 +45,7 @@ if [ -z "${_api_token}" ]; then
         --argjson enable_remux "$(bashio::config 'enable_remux')" \
         --argjson enable_epg "$(bashio::config 'enable_epg')" \
         --arg epg_url "$(bashio::config 'epg_url')" \
+        --arg epg_urls_json "$(bashio::config 'epg_urls_json')" \
         --argjson epg_refresh_interval "$(bashio::config 'epg_refresh_interval')" \
         --arg epg_folder "$(bashio::config 'epg_folder')" \
         --arg recordings_folder "$(bashio::config 'recordings_folder')" \
@@ -58,6 +62,7 @@ if [ -z "${_api_token}" ]; then
                 enable_remux: $enable_remux,
                 enable_epg: $enable_epg,
                 epg_url: $epg_url,
+                epg_urls_json: $epg_urls_json,
                 epg_refresh_interval: $epg_refresh_interval,
                 epg_folder: $epg_folder,
                 recordings_folder: $recordings_folder,

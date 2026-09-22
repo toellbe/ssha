@@ -27,19 +27,8 @@ export TZ=$(bashio::config 'timezone')
 WEB_PROTOCOL="http"
 export HOME="/config/snappier"
 
-# Create necessary directories without passing empty config values to mkdir.
-for directory in \
-    "${SNAPPIER_RECORDINGS_FOLDER}" \
-    "${SNAPPIER_MOVIES_FOLDER}" \
-    "${SNAPPIER_SERIES_FOLDER}" \
-    "${SNAPPIER_PVR_FOLDER}" \
-    "${SNAPPIER_XTREAM_FOLDER}"; do
-    if [ -n "${directory}" ]; then
-        mkdir -p "${directory}"
-    else
-        bashio::log.warning "Skipping empty storage-directory configuration value."
-    fi
-done
+# Create necessary directories
+mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}" "${SNAPPIER_XTREAM_FOLDER}"
 
 bashio::log.info "Snappier Server configuration:"
 bashio::log.info "  Port: ${SNAPPIER_PORT}"
@@ -80,15 +69,26 @@ bashio::log.info "Binary information:"
 ls -la /usr/local/bin/snappier-server
 file /usr/local/bin/snappier-server
 
-# Make sure the binary is executable.
+# Make sure the binary is executable
 chmod +x /usr/local/bin/snappier-server
-if [ ! -x "/usr/local/bin/snappier-server" ]; then
-    bashio::log.error "Snappier Server binary is not executable at /usr/local/bin/snappier-server"
-    exit 1
-fi
 
-# Do not use `--help` as a fatal smoke test. The beta CLI may reject that flag
-# even though the server can start normally with its actual configuration.
+# Test if the binary can be executed
+if ! /usr/local/bin/snappier-server --help >/dev/null 2>&1; then
+    bashio::log.error "Binary cannot be executed. This might be due to:"
+    bashio::log.error "1. Missing dynamic libraries (try: ldd /usr/local/bin/snappier-server)"
+    bashio::log.error "2. Wrong architecture or libc version"
+    bashio::log.error "3. Binary corruption"
+    
+    # Try to get more information
+    ldd /usr/local/bin/snappier-server 2>&1 || bashio::log.warning "ldd failed - static binary or missing libraries"
+    
+    bashio::log.error "Falling back to placeholder mode..."
+    while true; do
+        bashio::log.info "Snappier Server is running in placeholder mode (binary not executable)"
+        bashio::log.info "Web interface would be available at: ${WEB_PROTOCOL}://[HOST]:${SNAPPIER_PORT}"
+        sleep 300
+    done
+fi
 
 # Start Snappier Server
 bashio::log.info "Starting Snappier Server binary with environment configuration..."
@@ -113,5 +113,73 @@ bashio::log.info "  PROTOCOL=${WEB_PROTOCOL}"
 bashio::log.info "  RECORDINGS_FOLDER=${RECORDINGS_FOLDER}"
 bashio::log.info "  Working directory: $(pwd)"
 
-# Start Snappier Server
-exec /usr/local/bin/snappier-server --config /config/snappier/config.json
+persist_api_token_option() {
+    local token="$1"
+    local current_token
+
+    current_token="$(bashio::config 'api_token')"
+    if [ "${token}" = "${current_token}" ]; then
+        return 0
+    fi
+
+    local payload
+    payload="$(jq -n \
+        --argjson use_curl_to_download "$(bashio::config 'use_curl_to_download')" \
+        --argjson download_speed_limit_mbs "$(bashio::config 'download_speed_limit_mbs')" \
+        --argjson enable_remux "$(bashio::config 'enable_remux')" \
+        --argjson enable_epg "$(bashio::config 'enable_epg')" \
+        --arg epg_url "$(bashio::config 'epg_url')" \
+        --arg epg_urls_json "$(bashio::config 'epg_urls_json')" \
+        --argjson epg_refresh_interval "$(bashio::config 'epg_refresh_interval')" \
+        --arg epg_folder "$(bashio::config 'epg_folder')" \
+        --arg recordings_folder "$(bashio::config 'recordings_folder')" \
+        --arg movies_folder "$(bashio::config 'movies_folder')" \
+        --arg series_folder "$(bashio::config 'series_folder')" \
+        --arg pvr_folder "$(bashio::config 'pvr_folder')" \
+        --arg xtream_folder "$(bashio::config 'xtream_folder')" \
+        --arg api_token "${token}" \
+        --arg timezone "$(bashio::config 'timezone')" \
+        '{
+            options: {
+                use_curl_to_download: $use_curl_to_download,
+                download_speed_limit_mbs: $download_speed_limit_mbs,
+                enable_remux: $enable_remux,
+                enable_epg: $enable_epg,
+                epg_url: $epg_url,
+                epg_urls_json: $epg_urls_json,
+                epg_refresh_interval: $epg_refresh_interval,
+                epg_folder: $epg_folder,
+                recordings_folder: $recordings_folder,
+                movies_folder: $movies_folder,
+                series_folder: $series_folder,
+                pvr_folder: $pvr_folder,
+                xtream_folder: $xtream_folder,
+                api_token: $api_token,
+                timezone: $timezone
+            }
+        }')"
+
+    if curl -sS \
+        -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
+        -H "Content-Type: application/json" \
+        -d "${payload}" \
+        "http://supervisor/addons/self/options" >/dev/null; then
+        bashio::log.info "Stored API token in add-on settings (api_token)."
+    else
+        bashio::log.warning "Could not persist API token to add-on settings."
+    fi
+}
+
+# Start Snappier Server and redact sensitive token output from logs.
+/usr/local/bin/snappier-server --config /config/snappier/config.json 2>&1 | while IFS= read -r line; do
+    if [[ "${line}" =~ \.Auth\..*[Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]] || \
+       [[ "${line}" =~ [Aa][Pp][Ii][[:space:]][Tt]oken.*:[[:space:]]*([A-Za-z0-9_\-\.]{8,}) ]]; then
+        token="${BASH_REMATCH[1]}"
+        echo "${line//${token}/[REDACTED]}"
+        persist_api_token_option "${token}"
+    else
+        echo "${line}"
+    fi
+done
+
+exit ${PIPESTATUS[0]}
