@@ -3,4 +3,4 @@ build_from:
   amd64: "ghcr.io/home-assistant/amd64-base-debian:bookworm"
 args:
   SNAPPIER_SERVER_VERSION: "2.0.2-4"
-  SNAPPIER_SERVER_DOWNLOAD_BASE_URL: "https://snappierserver.app/files/v2.0.2-4"
+  SNAPPIER_SERVER_DOWNLOAD_BASE_URL: "https://snappierserver.app/betaFiles/v2.0.2-4"
