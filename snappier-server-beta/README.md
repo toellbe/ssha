@@ -33,6 +33,8 @@ This add-on supports the full feature set of Snappier Server, including:
 - 🌐 **Web Interface**: Easy-to-use web-based management interface
 - 🔗 **Home Assistant Integration**: Seamless integration with your Home Assistant setup
 - 📡 **EPG Support**: Electronic Program Guide with configurable refresh intervals
+- 🎯 **Comskip Integration**: Automatic commercial/reclame detection and skip support
+- 🔁 **Xtream Proxy**: Works as a proxy for Xtream streams and playlists
 
 ## Installation
 
