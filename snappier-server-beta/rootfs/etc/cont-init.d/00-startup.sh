@@ -11,7 +11,6 @@ RECORDINGS_FOLDER=$(bashio::config 'recordings_folder')
 MOVIES_FOLDER=$(bashio::config 'movies_folder')
 SERIES_FOLDER=$(bashio::config 'series_folder')
 PVR_FOLDER=$(bashio::config 'pvr_folder')
-EPG_FOLDER=$(bashio::config 'epg_folder')
 XTREAM_FOLDER=$(bashio::config 'xtream_folder')
 
 # Create directories only when the corresponding config option is non-empty.
@@ -20,7 +19,6 @@ for directory in \
     "${MOVIES_FOLDER}" \
     "${SERIES_FOLDER}" \
     "${PVR_FOLDER}" \
-    "${EPG_FOLDER}" \
     "${XTREAM_FOLDER}"; do
     [ -n "${directory}" ] && mkdir -p "${directory}"
 done
@@ -30,7 +28,6 @@ bashio::log.info "  - Recordings: ${RECORDINGS_FOLDER}"
 bashio::log.info "  - Movies: ${MOVIES_FOLDER}"
 bashio::log.info "  - Series: ${SERIES_FOLDER}"
 bashio::log.info "  - PVR: ${PVR_FOLDER}"
-[ -n "${EPG_FOLDER}" ] && bashio::log.info "  - EPG: ${EPG_FOLDER}"
 bashio::log.info "  - Xtream: ${XTREAM_FOLDER}"
 
 # Generate API token if not yet set
@@ -40,14 +37,6 @@ if [ -z "${_api_token}" ]; then
     bashio::log.info "Generated new API token."
 
     _payload="$(jq -n \
-        --argjson use_curl_to_download "$(bashio::config 'use_curl_to_download')" \
-        --argjson download_speed_limit_mbs "$(bashio::config 'download_speed_limit_mbs')" \
-        --argjson enable_remux "$(bashio::config 'enable_remux')" \
-        --argjson enable_epg "$(bashio::config 'enable_epg')" \
-        --arg epg_url "$(bashio::config 'epg_url')" \
-        --arg epg_urls_json "$(bashio::config 'epg_urls_json')" \
-        --argjson epg_refresh_interval "$(bashio::config 'epg_refresh_interval')" \
-        --arg epg_folder "$(bashio::config 'epg_folder')" \
         --arg recordings_folder "$(bashio::config 'recordings_folder')" \
         --arg movies_folder "$(bashio::config 'movies_folder')" \
         --arg series_folder "$(bashio::config 'series_folder')" \
@@ -57,14 +46,6 @@ if [ -z "${_api_token}" ]; then
         --arg timezone "$(bashio::config 'timezone')" \
         '{
             options: {
-                use_curl_to_download: $use_curl_to_download,
-                download_speed_limit_mbs: $download_speed_limit_mbs,
-                enable_remux: $enable_remux,
-                enable_epg: $enable_epg,
-                epg_url: $epg_url,
-                epg_urls_json: $epg_urls_json,
-                epg_refresh_interval: $epg_refresh_interval,
-                epg_folder: $epg_folder,
                 recordings_folder: $recordings_folder,
                 movies_folder: $movies_folder,
                 series_folder: $series_folder,
@@ -74,7 +55,6 @@ if [ -z "${_api_token}" ]; then
                 timezone: $timezone
             }
         }')"
-
     if curl -sS \
         -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
         -H "Content-Type: application/json" \

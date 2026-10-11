@@ -50,12 +50,6 @@ This add-on supports the full feature set of Snappier Server, including:
 ### Basic Configuration
 
 ```yaml
-use_curl_to_download: true
-download_speed_limit_mbs: 0
-enable_remux: true
-enable_epg: false
-epg_url: ""
-epg_refresh_interval: 24
 recordings_folder: "/share/snappier/recordings"
 movies_folder: "/share/snappier/movies"
 series_folder: "/share/snappier/series"
@@ -70,12 +64,6 @@ ssl_key: "/ssl/privkey.pem"
 
 | Option | Description | Default |
 |--------|-------------|---------|
-| `use_curl_to_download` | Use curl instead of FFmpeg for downloads | `true` |
-| `download_speed_limit_mbs` | Download speed limit in MB/s (0 = unlimited) | `0` |
-| `enable_remux` | Enable video remuxing | `true` |
-| `enable_epg` | Enable EPG (Electronic Program Guide) functionality | `false` |
-| `epg_url` | EPG (Electronic Program Guide) URL (optional) | `""` |
-| `epg_refresh_interval` | EPG refresh interval in hours (1-168) | `24` |
 | `recordings_folder` | Path for recordings | `/share/snappier/recordings` |
 | `movies_folder` | Path for movies | `/share/snappier/movies` |
 | `series_folder` | Path for TV series | `/share/snappier/series` |
@@ -142,8 +130,8 @@ These directories are accessible from other Home Assistant add-ons.
 
 ### Architecture
 - **Base Image**: Debian Linux for glibc compatibility
-- **Snappier Server (stable)**: CLI binaries `v2.0.1-1` from `https://snappierserver.app/files/`
-- **Snappier Server Beta**: CLI binaries `v2.0.2-4` from `https://snappierserver.app/betaFiles/`
+- **Snappier Server (stable)**: CLI binaries from `https://snappierserver.app/files/`
+- **Snappier Server Beta**: CLI binaries from `https://snappierserver.app/betaFiles/`
 - **Video Processing**: FFmpeg integration
 - **Multi-Architecture**: Support for amd64, aarch64
 

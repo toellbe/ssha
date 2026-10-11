@@ -1,5 +1,5 @@
 name: Snappier Server Beta Unofficial
-version: "1.3.4-beta.1"
+version: "1.4.0-beta.1"
 slug: snappier-server-beta
 description: Self-hosted, lightweight recording and streaming service (beta)
 arch:
@@ -28,15 +28,6 @@ map:
   - media:rw
   - ssl:ro
 options:
-  use_curl_to_download: true
-  download_speed_limit_mbs: 0
-  enable_remux: true
-  enable_epg: false
-  epg_url: ""
-  # Multiple EPG sources as JSON array, e.g.: [{"url":"http://source1.com/epg.xml","name":"Main","priority":1,"enabled":true}]
-  epg_urls_json: ""
-  epg_refresh_interval: 24
-  epg_folder: ""
   recordings_folder: "/share/snappier/recordings"
   movies_folder: "/share/snappier/movies"
   series_folder: "/share/snappier/series"
@@ -47,14 +38,6 @@ options:
   ssl_cert: "/ssl/fullchain.pem"
   ssl_key: "/ssl/privkey.pem"
 schema:
-  use_curl_to_download: bool
-  download_speed_limit_mbs: int(0,)
-  enable_remux: bool
-  enable_epg: bool
-  epg_url: str?
-  epg_urls_json: str?
-  epg_refresh_interval: int(1,168)
-  epg_folder: str?
   recordings_folder: str
   movies_folder: str
   series_folder: str

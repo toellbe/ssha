@@ -1,6 +1,6 @@
 # Home Assistant Add-on: Snappier Server Beta
 
-**Version:** `1.3.4-beta.1`  
+**Version:** `1.4.0-beta.1`  
 **Runtime:** Snappier Server CLI **beta** `v2.0.5-1`
 
 > **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
@@ -51,13 +51,6 @@ This add-on supports the full feature set of Snappier Server, including:
 ### Basic Configuration
 
 ```yaml
-use_curl_to_download: true
-download_speed_limit_mbs: 0
-enable_remux: true
-enable_epg: false
-epg_url: ""
-epg_urls_json: ""
-epg_refresh_interval: 24
 recordings_folder: "/share/snappier/recordings"
 movies_folder: "/share/snappier/movies"
 series_folder: "/share/snappier/series"
@@ -73,13 +66,6 @@ ssl_key: "/ssl/privkey.pem"
 
 | Option | Description | Default |
 |--------|-------------|---------|
-| `use_curl_to_download` | Use curl instead of FFmpeg for downloads | `true` |
-| `download_speed_limit_mbs` | Download speed limit in MB/s (0 = unlimited) | `0` |
-| `enable_remux` | Enable video remuxing | `true` |
-| `enable_epg` | Enable EPG (Electronic Program Guide) functionality | `false` |
-| `epg_url` | Single EPG source URL | `""` |
-| `epg_urls_json` | Multiple EPG sources as JSON array (see format below) | `""` |
-| `epg_refresh_interval` | EPG refresh interval in hours (1-168) | `24` |
 | `recordings_folder` | Path for recordings | `/share/snappier/recordings` |
 | `movies_folder` | Path for movies | `/share/snappier/movies` |
 | `series_folder` | Path for TV series | `/share/snappier/series` |
@@ -92,19 +78,7 @@ ssl_key: "/ssl/privkey.pem"
 
 ### EPG Configuration
 
-You can configure EPG sources in two ways:
-
-- **Single source**: Set `epg_url` to a single URL string.
-- **Multiple sources**: Set `epg_urls_json` to a JSON array with the following format:
-
-```json
-[
-  {"url": "http://source1.com/epg.xml", "name": "Main", "priority": 1, "enabled": true},
-  {"url": "http://source2.com/epg.xml", "name": "Backup", "priority": 2, "enabled": true}
-]
-```
-
-If `epg_urls_json` is set, it takes precedence over `epg_url`.
+EPG is now configured entirely through the Snappier Server web dashboard (Settings → EPG) — no Home Assistant add-on options are required. See the [Snappier Server documentation](https://snappierserver.app/docs.html#epg) for details.
 
 ### HTTPS / SSL
 

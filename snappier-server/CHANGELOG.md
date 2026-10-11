@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2026-10-11
+
+### Removed
+- `epg_url`, `epg_urls_json`, `epg_refresh_interval` and `epg_folder` Home Assistant add-on options — EPG sources, priorities and the refresh interval are now configured entirely through the Snappier Server web dashboard (Settings → EPG)
+- `use_curl_to_download`, `download_speed_limit_mbs`, `enable_remux` and `enable_epg` Home Assistant add-on options — these are now managed entirely through the Snappier Server web dashboard (Settings → Server)
+
 ## [1.4.1] - 2026-10-03
 
 ### Changed
