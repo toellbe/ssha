@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.4-beta.1] - 2026-11-11
+
+### Added
+- `disable_tls_validation` add-on option (default `false`) — sets `NODE_TLS_REJECT_UNAUTHORIZED=0` to work around `self-signed certificate` errors; use only if you understand the security implications
+
 ## [1.4.3-beta.1] - 2026-11-11
 
 ### Changed

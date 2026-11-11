@@ -1,6 +1,6 @@
 # Home Assistant Add-on: Snappier Server Beta
 
-**Version:** `1.4.2-beta.1`  
+**Version:** `1.4.4-beta.1`  
 **Runtime:** Snappier Server CLI **beta** `v2.0.6-15`
 
 > **⚠️ WORK IN PROGRESS - EXPERIMENTAL**  
@@ -62,6 +62,7 @@ api_token: ""
 timezone: "Europe/Berlin"
 ssl_cert: "/ssl/fullchain.pem"
 ssl_key: "/ssl/privkey.pem"
+disable_tls_validation: false
 ```
 
 ### Advanced Configuration Options
@@ -77,6 +78,7 @@ ssl_key: "/ssl/privkey.pem"
 | `timezone` | Timezone for scheduling | `Europe/Berlin` |
 | `ssl_cert` | SSL certificate path (optional) | `/ssl/fullchain.pem` |
 | `ssl_key` | SSL private key path (optional) | `/ssl/privkey.pem` |
+| `disable_tls_validation` | Disable TLS certificate validation (fixes `self-signed certificate` errors; insecure) | `false` |
 
 ### EPG Configuration
 
