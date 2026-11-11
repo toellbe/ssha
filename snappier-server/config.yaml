@@ -1,5 +1,5 @@
 name: Snappier Server Unofficial
-version: "1.5.2"
+version: "1.5.3"
 slug: snappier-server
 description: Self-hosted, lightweight recording and streaming service (stable)
 arch:
@@ -37,6 +37,7 @@ options:
   timezone: "Europe/Berlin"
   ssl_cert: "/ssl/fullchain.pem"
   ssl_key: "/ssl/privkey.pem"
+  stream_auth_signed: true
 schema:
   recordings_folder: str
   movies_folder: str
@@ -47,3 +48,4 @@ schema:
   timezone: str
   ssl_cert: str?
   ssl_key: str?
+  stream_auth_signed: bool?

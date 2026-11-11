@@ -57,6 +57,7 @@ api_token: ""
 timezone: "Europe/Berlin"
 ssl_cert: "/ssl/fullchain.pem"
 ssl_key: "/ssl/privkey.pem"
+stream_auth_signed: true
 ```
 
 ### Advanced Configuration Options
@@ -72,6 +73,7 @@ ssl_key: "/ssl/privkey.pem"
 | `timezone` | Timezone for scheduling | `Europe/Berlin` |
 | `ssl_cert` | SSL certificate path (optional) | `/ssl/fullchain.pem` |
 | `ssl_key` | SSL private key path (optional) | `/ssl/privkey.pem` |
+| `stream_auth_signed` | Sets `stream_auth: "signed"` in Snappier's `config.json` (signed stream URLs); when off the key is removed | `true` |
 
 ### EPG Configuration
 
