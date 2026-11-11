@@ -79,5 +79,15 @@ else
     bashio::log.info "config.json already exists at ${_snappier_config} - keeping existing settings."
 fi
 
+# Apply stream_auth setting on every start (default on)
+if bashio::config.false 'stream_auth_signed'; then
+    _jq_filter='del(.stream_auth)'
+    bashio::log.info "stream_auth disabled in config.json."
+else
+    _jq_filter='.stream_auth = "signed"'
+    bashio::log.info "stream_auth set to \"signed\" in config.json."
+fi
+jq "${_jq_filter}" "${_snappier_config}" > "${_snappier_config}.tmp" && mv "${_snappier_config}.tmp" "${_snappier_config}"
+
 bashio::log.info "Snappier Server Add-on initialization complete!"
 bashio::log.info "Access the web interface at: http://[YOUR_HA_IP]:7429"

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.5-beta.1] - 2026-11-11
+
+### Added
+- `stream_auth_signed` add-on option (default `true`) — writes `stream_auth: "signed"` to `config.json` on every start; when off, the key is removed
+
+### Removed
+- `disable_tls_validation` add-on option — Snappier now supports this natively as a setting
+
 ## [1.4.4-beta.1] - 2026-11-11
 
 ### Added

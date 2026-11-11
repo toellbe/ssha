@@ -1,5 +1,5 @@
 name: Snappier Server Beta Unofficial
-version: "1.4.4-beta.1"
+version: "1.4.5-beta.1"
 slug: snappier-server-beta
 description: Self-hosted, lightweight recording and streaming service (beta)
 arch:
@@ -37,7 +37,7 @@ options:
   timezone: "Europe/Berlin"
   ssl_cert: "/ssl/fullchain.pem"
   ssl_key: "/ssl/privkey.pem"
-  disable_tls_validation: false
+  stream_auth_signed: true
 schema:
   recordings_folder: str
   movies_folder: str
@@ -48,4 +48,4 @@ schema:
   timezone: str
   ssl_cert: str?
   ssl_key: str?
-  disable_tls_validation: bool?
+  stream_auth_signed: bool?
