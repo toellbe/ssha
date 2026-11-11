@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.3] - 2026-11-11
+
+### Added
+- `stream_auth_signed` add-on option (default `true`) — writes `stream_auth: "signed"` to `config.json` on every start; when off, the key is removed
+
 ## [1.5.2] - 2026-11-11
 
 ### Changed
