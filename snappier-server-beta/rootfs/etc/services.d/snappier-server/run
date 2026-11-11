@@ -17,12 +17,6 @@ export TZ=$(bashio::config 'timezone')
 WEB_PROTOCOL="http"
 export HOME="/config/snappier"
 
-# Optional: disable TLS certificate validation (e.g. for self-signed certificates)
-if bashio::config.true 'disable_tls_validation'; then
-    export NODE_TLS_REJECT_UNAUTHORIZED=0
-    bashio::log.warning "TLS certificate validation is DISABLED (disable_tls_validation=true)."
-fi
-
 # Create necessary directories
 mkdir -p "${SNAPPIER_RECORDINGS_FOLDER}" "${SNAPPIER_MOVIES_FOLDER}" "${SNAPPIER_SERIES_FOLDER}" "${SNAPPIER_PVR_FOLDER}" "${SNAPPIER_XTREAM_FOLDER}"
 
